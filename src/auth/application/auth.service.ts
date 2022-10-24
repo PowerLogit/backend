@@ -9,6 +9,7 @@ import { User } from 'src/users/domain/@types/user'
 import { UserRepository } from 'src/users/infrastructure/repository.service'
 import { BearerPayload } from '../domain/@types/BearerPayload'
 import { jwtCustom } from '../domain/@types/jwt'
+import { LoginUserDto, RegisterUserDto } from '../infrastructure/dtos'
 
 @Injectable()
 export class AuthService {
@@ -17,20 +18,18 @@ export class AuthService {
         private jwtService: JwtService,
     ) {}
 
-    async validateUser(email: string, pass: string): Promise<any> {
+    public async login({ email, password }: LoginUserDto): Promise<jwtCustom> {
         const user = await this.userRepo.findOneByEmail(email)
         if (!user) throw new ForbiddenException('Credentials incorrect')
 
-        const validPassword = user.password === pass
+        const validPassword = user.password === password
         if (!validPassword)
             throw new ForbiddenException('Credentials incorrect')
 
-        const { password, ...result } = user
-
-        return result
+        return await this.signToken(user)
     }
 
-    async register(user: User): Promise<void> {
+    public async register(user: RegisterUserDto): Promise<void> {
         const existUserById = await this.userRepo.findOne(user.id)
         if (existUserById)
             throw new ConflictException('The id is already in use')
@@ -42,15 +41,15 @@ export class AuthService {
         await this.userRepo.create(user)
     }
 
-    async login(user: User): Promise<jwtCustom> {
+    private async signToken(user: User): Promise<jwtCustom> {
         const payload: BearerPayload = {
             id: user.id,
             name: user.name,
             rol: user.rol,
         }
 
-        return {
-            access_token: this.jwtService.sign(payload),
-        }
+        const access_token = await this.jwtService.signAsync(payload)
+
+        return { access_token }
     }
 }
