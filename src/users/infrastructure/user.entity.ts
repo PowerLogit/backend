@@ -1,9 +1,9 @@
 import { BaseEntity } from 'src/shared/infra/databases/BaseEntity'
 import { Column, Entity } from 'typeorm'
-import { User, UserRol } from '../domain/@types/user'
+import { IUser } from '../domain/@types/IUser'
 
 @Entity()
-export class UserEntity extends BaseEntity implements User {
+export class UserEntity extends BaseEntity implements IUser {
     @Column()
     name!: string
 
@@ -14,5 +14,5 @@ export class UserEntity extends BaseEntity implements User {
     password!: string
 
     @Column()
-    rol!: UserRol
+    rol!: string
 }

@@ -1,6 +1,7 @@
 import { IRepository } from 'src/shared/domain/IRepository'
-import { User } from '../@types/user'
+import { UserModel } from '../user.model'
+import { EmailVO } from '../vo/email.vo'
 
-export interface IUserRepository extends IRepository<User> {
-    findOneByEmail(email: string): Promise<User | undefined>
+export interface IUserRepository extends IRepository<UserModel> {
+    findOneByEmail(email: EmailVO): Promise<UserModel | null>
 }

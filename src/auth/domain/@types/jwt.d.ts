@@ -1,3 +1,3 @@
-export type jwtCustom = {
+export type AccessToken = {
     access_token: string
 }

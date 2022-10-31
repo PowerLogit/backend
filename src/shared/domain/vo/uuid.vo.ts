@@ -3,11 +3,11 @@ import { VOFormatException } from '../errors/voFormatException'
 import { ValueObject } from './valueObject'
 
 export class UuidVO extends ValueObject<string> {
-    public equals(valueObject: UuidVO) {
+    public equals(valueObject: UuidVO): boolean {
         return this.value === valueObject.value
     }
 
-    protected assertIsValid(value: string) {
+    protected assertIsValid(value: string): void | VOFormatException {
         if (!test(value)) throw new VOFormatException(UuidVO.name, value)
     }
 
