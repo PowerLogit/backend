@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
 import { UuidVO } from 'src/shared/domain/vo/uuid.vo'
-import { UserRepository } from '../infrastructure/repository.service'
+import { UserRepository } from '../../infrastructure/repository.service'
 
 @Injectable()
 export class UserProfileUseCase {

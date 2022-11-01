@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common'
 import { JwtAuthGuard } from 'src/auth/application/guards/jwt-auth.guard'
 import { RequestAuth } from 'src/shared/domain/@types/RequestAuth'
-import { UserProfileUseCase } from '../../application/profile.service'
+import { UserProfileUseCase } from '../../application/useCases/profile.service'
 import { UserProfile } from '../serializers'
 
 @Controller('auth')
