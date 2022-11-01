@@ -9,7 +9,7 @@ export class NameVO extends ValueObject<string> {
         return this.value === valueObject.value
     }
 
-    protected assertIsValid(value: string): void | VOFormatException {
+    protected assertIsValid(value: string): void {
         if (!NameVO.regex.test(value))
             throw new VOFormatException(NameVO.name, value)
     }

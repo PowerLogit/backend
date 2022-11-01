@@ -9,7 +9,7 @@ export class PasswordVO extends ValueObject<string> {
         return this.value === valueObject.value
     }
 
-    protected assertIsValid(value: string): void | VOFormatException {
+    protected assertIsValid(value: string): void {
         if (typeof value !== 'string')
             throw new VOFormatException(PasswordVO.name, value)
     }
@@ -23,9 +23,7 @@ export class PasswordVO extends ValueObject<string> {
         return new PasswordVO(value)
     }
 
-    private static assertIsValidPlainPassword(
-        plainPassword: string,
-    ): void | VOFormatException {
+    private static assertIsValidPlainPassword(plainPassword: string): void {
         if (
             plainPassword.length < 8 &&
             plainPassword.length > 30 &&

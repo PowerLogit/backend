@@ -9,7 +9,7 @@ export class EmailVO extends ValueObject<string> {
         return this.value === valueObject.value
     }
 
-    protected assertIsValid(value: string): void | VOFormatException {
+    protected assertIsValid(value: string): void {
         if (!EmailVO.regex.test(value))
             throw new VOFormatException(EmailVO.name, value)
     }

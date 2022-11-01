@@ -7,7 +7,7 @@ export class UuidVO extends ValueObject<string> {
         return this.value === valueObject.value
     }
 
-    protected assertIsValid(value: string): void | VOFormatException {
+    protected assertIsValid(value: string): void {
         if (!test(value)) throw new VOFormatException(UuidVO.name, value)
     }
 

@@ -6,7 +6,7 @@ export class DateVO extends ValueObject<Date> {
         return this.value === valueObject.value
     }
 
-    protected assertIsValid(value: Date): void | VOFormatException {
+    protected assertIsValid(value: Date): void {
         if (!new Date(value)) throw new VOFormatException(DateVO.name, value)
     }
 
