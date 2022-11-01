@@ -1,1 +1,1 @@
-export * from './login.dto'
+export { UpdateUserDto } from './updateUser.dto'
