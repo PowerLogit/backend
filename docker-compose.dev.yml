@@ -1,0 +1,21 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    container_name: postgresNestPG
+    restart: always
+    environment:
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_DB=${PG_NAME}
+    env_file: ./.env
+    ports:
+      - '${PG_PORT}:5432'
+    volumes: 
+      - postgres-nest-db:/var/lib/postgresql/data
+#     - ./init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
+
+volumes:
+  postgres-nest-db:
+    driver: local
