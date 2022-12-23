@@ -6,6 +6,7 @@ import { AuthModule } from './auth/domain/auth.module'
 import { JwtAuthGuard } from './auth/application/guards/jwt-auth.guard'
 import configEnv from './shared/infra/config/common.env'
 import { UsersModule } from './users/domain/users.module'
+import { WorkoutsModule } from './workouts/domain/workouts.module'
 
 @Module({
     providers: [
@@ -33,6 +34,7 @@ import { UsersModule } from './users/domain/users.module'
         }),
         AuthModule,
         UsersModule,
+        WorkoutsModule,
     ],
 })
 export class AppModule {}

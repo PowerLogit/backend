@@ -1,6 +1,7 @@
 import { BaseModel } from 'src/shared/domain/BaseModel'
 import { DateVO } from 'src/shared/domain/vo/date.vo'
 import { UuidVO } from 'src/shared/domain/vo/uuid.vo'
+import { WorkoutModel } from 'src/workouts/domain/models/workout.model'
 import { IUserModel } from './interfaces/IUserModel'
 import { EmailVO } from './vo/email.vo'
 import { NameVO } from './vo/name.vo'
@@ -29,6 +30,7 @@ export class UserModel extends BaseModel implements IUserModel {
         public rol: RolVO,
         createdAt: DateVO,
         updatedAt: DateVO,
+        public workouts?: WorkoutModel[],
     ) {
         super(id, createdAt, updatedAt)
     }
@@ -41,6 +43,7 @@ export class UserModel extends BaseModel implements IUserModel {
         rol: RolVO,
         createdAt: DateVO,
         updatedAt: DateVO,
+        workouts?: WorkoutModel[],
     ): UserModel {
         return new UserModel(
             id,
@@ -50,6 +53,7 @@ export class UserModel extends BaseModel implements IUserModel {
             rol,
             createdAt,
             updatedAt,
+            workouts,
         )
     }
 }

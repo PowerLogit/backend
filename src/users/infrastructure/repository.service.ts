@@ -25,6 +25,33 @@ export class UserRepository implements IUserRepository {
         const user = await this.repository.findOneBy({ id: id.value })
         if (!user) return null
 
+        const user2 = await this.repository.find({
+            where: { id: id.value },
+            relations: ['workouts'],
+        })
+        console.log(user2)
+
+        /*const usuario = new UserEntity()
+        usuario.id = user.id
+
+        const workout = new WorkoutEntity()
+        workout.id = '10565e3c-8dc3-49b7-b168-6e893e89b04a'
+        workout.name = 'SQLB'
+        workout.sets = 4
+        workout.reps = 8
+        workout.weight = 90
+        workout.date = new Date()
+        workout.createdAt = new Date()
+        workout.updatedAt = new Date()
+        workout.userId = user
+
+        usuario.workouts = [workout]
+
+        console.log(usuario)
+
+        const user3 = await this.repository.save(usuario)
+        console.log(user3)*/
+
         return UserMapper.toDomain(user)
     }
 
